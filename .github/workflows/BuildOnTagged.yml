@@ -17,15 +17,13 @@ jobs:
         
         steps:
         - uses: actions/checkout@master
-        - run: 
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -username ${UNITY_ID} -password ${UNITY_PASSWORD} || exit 0
         
         - run: /opt/Unity/Editor/Unity -batchmode -nographics -silent-crashes -logFile -projectPath . -runEditorTests -editorTestsResultFile path/to/artifact/results.xml || exit 0
         
+        
         - run: apt-get update
         - run: apt-get install zip -y
-        
-        
         
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildWindowsPlayer ./bin/windows32/Cerke-Online.exe
         - run: zip -r CerkeOnlineWindows32Binary.zip ./bin/windows32
