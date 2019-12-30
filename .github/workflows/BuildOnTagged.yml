@@ -27,41 +27,53 @@ jobs:
         
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildWindowsPlayer ./bin/windows32/Cerke-Online.exe
         - run: zip -r CerkeOnlineWindows32Binary.zip ./bin/windows32
-        - store_artifacts:
+        - name: Upload artifact
+          uses: actions/upload-artifact@v1.0.0
+          with:
+            name: CerkeOnlineWindows32Binary.zip
             path: ./CerkeOnlineWindows32Binary.zip
-            destination: ./CerkeOnlineWindows32Binary.zip
         
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildWindows64Player ./bin/windows64/Cerke-Online.exe
         - run: zip -r CerkeOnlineWindows64Binary.zip ./bin/windows64
-        - store_artifacts:
+        - name: Upload artifact
+          uses: actions/upload-artifact@v1.0.0
+          with:
+            name: CerkeOnlineWindows64Binary.zip
             path: ./CerkeOnlineWindows64Binary.zip
-            destination: ./CerkeOnlineWindows64Binary.zip
         
         
         
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildOSXPlayer ./bin/osx32/Cerke-Online.exe
         - run: zip -r CerkeOnlineOSX32Binary.zip ./bin/osx32
-        - store_artifacts:
+        - name: Upload artifact
+          uses: actions/upload-artifact@v1.0.0
+          with:
+            name: CerkeOnlineOSX32Binary.zip
             path: ./CerkeOnlineOSX32Binary.zip
-            destination: ./CerkeOnlineOSX32Binary.zip
-        
+         
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildOSX64Player  ./bin/osx64/Cerke-Online.exe
         - run: zip -r CerkeOnlineOSX64Binary.zip ./bin/osx64
-        - store_artifacts:
+        - name: Upload artifact
+          uses: actions/upload-artifact@v1.0.0
+          with:
+            name: CerkeOnlineOSX64Binary.zip
             path: ./CerkeOnlineOSX64Binary.zip
-            destination: ./CerkeOnlineOSX64Binary.zip
         
         
         
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildLinux32Player ./bin/linux32/Cerke-Online.exe
         - run: zip -r CerkeOnlineLinux32Binary.zip ./bin/linux32
-        - store_artifacts:
+        - name: Upload artifact
+          uses: actions/upload-artifact@v1.0.0
+          with:
+            name: CerkeOnlineLinux32Binary.zip
             path: ./CerkeOnlineLinux32Binary.zip
-            destination: ./CerkeOnlineLinux32Binary.zip
         
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildLinux64Player ./bin/linux64/Cerke-Online.exe
         - run: zip -r CerkeOnlineLinux64Binary.zip ./bin/linux64
-        - store_artifacts:
+        - name: Upload artifact
+          uses: actions/upload-artifact@v1.0.0
+          with:
+            name: CerkeOnlineLinux64Binary.zip
             path: ./CerkeOnlineLinux64Binary.zip
-            destination: ./CerkeOnlineLinux64Binary.zip
-        
+     
