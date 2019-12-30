@@ -16,4 +16,12 @@ jobs:
         steps:
         - uses: actions/checkout@master
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -username ${UNITY_ID} -password ${UNITY_PASSWORD} || exit 0
-        - run: /opt/Unity/Editor/Unity -quit -batchmode -returnlicense
+        - run: /opt/Unity/Editor/Unity -batchmode -nographics -silent-crashes -logFile -projectPath . -runEditorTests -editorTestsResultFile ./artifact/results.xml || exit 0
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -returnlicense || exit 0
+        - name: Upload artifact
+          uses: actions/upload-artifact@v1.0.0
+          with:
+            # Artifact name
+            name: results.zip
+            # Directory containing files to upload
+            path: ./path/to/artifact/results.xml
