@@ -1,0 +1,19 @@
+name: TestRunner
+
+on:
+    push:
+        branches:
+        - master
+
+jobs:
+    runEditorTest:
+        runs-on: ubuntu-latest
+        container: docker://gableroux/unity3d:${{ matrix.unity-tag }}
+        strategy:
+            matrix:
+                unity-tag: [2018.4.14f1]
+        
+        steps:
+        - uses: actions/checkout@master
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -username ${UNITY_ID} -password ${UNITY_PASSWORD}
+        
