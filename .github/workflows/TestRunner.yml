@@ -16,4 +16,4 @@ jobs:
         steps:
         - uses: actions/checkout@master
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -username ${UNITY_ID} -password ${UNITY_PASSWORD}
-        
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -returnlicense
