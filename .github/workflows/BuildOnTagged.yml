@@ -1,0 +1,69 @@
+name: BuildOnTagged
+
+on:
+    create:
+        branches:
+        - master
+        tags:
+        - v*
+
+jobs:
+    runEditorTest:
+        runs-on: ubuntu-latest
+        container: docker://gableroux/unity3d:${{ matrix.unity-tag }}
+        strategy:
+            matrix:
+                unity-tag: [2018.4.14f1]
+        
+        steps:
+        - uses: actions/checkout@master
+        - run: 
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -username ${UNITY_ID} -password ${UNITY_PASSWORD} || exit 0
+        
+        - run: /opt/Unity/Editor/Unity -batchmode -nographics -silent-crashes -logFile -projectPath . -runEditorTests -editorTestsResultFile path/to/artifact/results.xml || exit 0
+        
+        - run: apt-get update
+        - run: apt-get install zip -y
+        
+        
+        
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildWindowsPlayer ./bin/windows32/Cerke-Online.exe
+        - run: zip -r CerkeOnlineWindows32Binary.zip ./bin/windows32
+        - store_artifacts:
+            path: ./CerkeOnlineWindows32Binary.zip
+            destination: ./CerkeOnlineWindows32Binary.zip
+        
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildWindows64Player ./bin/windows64/Cerke-Online.exe
+        - run: zip -r CerkeOnlineWindows64Binary.zip ./bin/windows64
+        - store_artifacts:
+            path: ./CerkeOnlineWindows64Binary.zip
+            destination: ./CerkeOnlineWindows64Binary.zip
+        
+        
+        
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildOSXPlayer ./bin/osx32/Cerke-Online.exe
+        - run: zip -r CerkeOnlineOSX32Binary.zip ./bin/osx32
+        - store_artifacts:
+            path: ./CerkeOnlineOSX32Binary.zip
+            destination: ./CerkeOnlineOSX32Binary.zip
+        
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildOSX64Player  ./bin/osx64/Cerke-Online.exe
+        - run: zip -r CerkeOnlineOSX64Binary.zip ./bin/osx64
+        - store_artifacts:
+            path: ./CerkeOnlineOSX64Binary.zip
+            destination: ./CerkeOnlineOSX64Binary.zip
+        
+        
+        
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildLinux32Player ./bin/linux32/Cerke-Online.exe
+        - run: zip -r CerkeOnlineLinux32Binary.zip ./bin/linux32
+        - store_artifacts:
+            path: ./CerkeOnlineLinux32Binary.zip
+            destination: ./CerkeOnlineLinux32Binary.zip
+        
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildLinux64Player ./bin/linux64/Cerke-Online.exe
+        - run: zip -r CerkeOnlineLinux64Binary.zip ./bin/linux64
+        - store_artifacts:
+            path: ./CerkeOnlineLinux64Binary.zip
+            destination: ./CerkeOnlineLinux64Binary.zip
+        
