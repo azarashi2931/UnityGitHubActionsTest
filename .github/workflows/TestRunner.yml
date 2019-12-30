@@ -24,4 +24,4 @@ jobs:
             # Artifact name
             name: results.zip
             # Directory containing files to upload
-            path: ./artifact/results.xml
+            path: ./artifact/
