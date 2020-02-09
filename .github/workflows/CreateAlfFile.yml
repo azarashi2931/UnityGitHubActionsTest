@@ -19,7 +19,7 @@ jobs:
     - run: cp "Unity_v$UNITY_VERSION.alf" artifact
       env:
         UNITY_VERSION: ${{ matrix.unity-tag }}
-    - uses: actions/upload-artifact@v1.00
+    - uses: actions/upload-artifact@v1.0.0
       with:
         name: ${{ matrix.unity-tag }}
         path: artifact
