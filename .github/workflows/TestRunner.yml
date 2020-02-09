@@ -22,7 +22,10 @@ jobs:
         
         - name: Unity - Test runner
           uses: webbertakken/unity-test-runner@v1.3
+          env:
+            UNITY_LICENSE: ${{ secrets.ULF_FILE }}
           with:
+            projectPath: .
             unityVersion: ${{ matrix.unity-tag }}
         
         - name: Upload artifact
