@@ -1,0 +1,25 @@
+name: Create ALF File
+
+on:
+    push:
+        branches:
+        - master
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    container: docker://gableroux/unity3d:${{ matrix.unity-tag }}
+    strategy:
+        matrix:
+            unity-tag: [2018.4.14f1]
+
+    steps:
+    - run: mkdir artifact
+    - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -logfile -createManualActivationFile || exit 0
+    - run: cp "Unity_v$UNITY_VERSION.alf" artifact
+      env:
+        UNITY_VERSION: ${{ matrix.unity-tag }}
+    - uses: actions/upload-artifact@v1.00
+      with:
+        name: ${{ matrix.unity-tag }}
+        path: artifact
