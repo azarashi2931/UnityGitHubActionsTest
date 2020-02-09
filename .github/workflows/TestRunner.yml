@@ -15,8 +15,8 @@ jobs:
         
         steps:
         - uses: actions/checkout@master
-        - run: echo "${{ secrets.ULF_FILE }}" > /license.ulf
-        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile /license.ulf || exit 0
+        - run: echo "${{ secrets.ULF_FILE }}" > ./license.ulf
+        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile ./license.ulf || exit 0
         - run: /opt/Unity/Editor/Unity -batchmode -nographics -silent-crashes -logFile -projectPath . -runEditorTests -editorTestsResultFile ./artifact/results.xml || exit 0
         - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -returnlicense || exit 0
         - name: Upload artifact
