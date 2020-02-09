@@ -16,9 +16,15 @@ jobs:
         steps:
         - uses: actions/checkout@master
         - run: echo "${{ secrets.ULF_FILE }}" > /Unity_v2018.x.ulf
-        - run: /opt/Unity/Editor/Unity -manualLicenseFile /Unity_v2018.x.ulf -quit -batchmode -nographics -silent-crashes -logFile || exit 0
-        - run: /opt/Unity/Editor/Unity -batchmode -nographics -silent-crashes -logFile -projectPath . -runEditorTests -editorTestsResultFile ./artifact/results.xml || exit 0
-        - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -returnlicense || exit 0
+        #- run: /opt/Unity/Editor/Unity -manualLicenseFile /Unity_v2018.x.ulf -quit -batchmode -nographics -silent-crashes -logFile || exit 0
+        #- run: /opt/Unity/Editor/Unity -batchmode -nographics -silent-crashes -logFile -projectPath . -runEditorTests -editorTestsResultFile ./artifact/results.xml || exit 0
+        #- run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -returnlicense || exit 0
+        
+        - name: Unity - Test runner
+          uses: webbertakken/unity-test-runner@v1.3
+          with:
+            unityVersion: ${{ matrix.unity-tag }}
+        
         - name: Upload artifact
           uses: actions/upload-artifact@v1.0.0
           with:
