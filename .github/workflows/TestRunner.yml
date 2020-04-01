@@ -22,6 +22,8 @@ jobs:
         
         - name: Unity - Test runner
           uses: webbertakken/unity-test-runner@v1.3
+          env:
+              UNITY_LICENCE: ${{secrets.UNITY_LICENCE}} 
           with:
             projectPath: .
             unityVersion: ${{ matrix.unity-tag }}
