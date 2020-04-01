@@ -11,7 +11,7 @@ jobs:
         #container: docker://gableroux/unity3d:${{ matrix.unity-tag }}
         strategy:
             matrix:
-                unity-tag: [2018.4.14f1]
+                unity-tag: [2019.3.5f1]
         
         steps:
         - uses: actions/checkout@master
@@ -22,8 +22,6 @@ jobs:
         
         - name: Unity - Test runner
           uses: webbertakken/unity-test-runner@v1.3
-          env:
-            UNITY_LICENSE: ${{ secrets.ULF_FILE }}
           with:
             projectPath: .
             unityVersion: ${{ matrix.unity-tag }}
